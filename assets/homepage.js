@@ -40,8 +40,7 @@ fetch(apiGoogleUrl)
 }
 
 getCoordinates("Salt Lake City");
-// Do google API search for coordinates
-// Create object with city + coordinates
+
 
 var weatherData = function (lat, long) {
   var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+"&lon="+long+"&cnt=5&appid=d59404695f0b8f8b3fe98cdfa252ddd5";
@@ -49,12 +48,27 @@ var weatherData = function (lat, long) {
     if(response.ok) {
         response.json().then(function(data) {
             console.log(data);
+
+            // add in date and icons
             for (let i = 0; i < 5; i++) {
                 var p = document.createElement("p");
                 var temp = data.daily[i].temp.day
                 p.innerText = Math.floor((temp - 273.15)*1.8 + 32) + "°F"
                 forecastDiv.appendChild(p);
             }
+            for (let i = 0; i < 5; i++) {
+                var p = document.createElement("p");
+                var wind = data.daily[i].wind_speed
+                p.innerText = wind + "MPH"
+                forecastDiv.appendChild(p);
+            }
+            for (let i = 0; i < 5; i++) {
+                var p = document.createElement("p");
+                var humidity = data.daily[i].humidity
+                p.innerText = humidity + "%"
+                forecastDiv.appendChild(p);
+            }
+            
             return data;
         });
     } else {
@@ -66,4 +80,4 @@ var weatherData = function (lat, long) {
 
 // print out data
 cityFormEl.addEventListener("submit", formSubmitHandler);
-cityButtonsEl.addEventListener("click", buttonClickHandler);
+// cityButtonsEl.addEventListener("click", buttonClickHandler);
