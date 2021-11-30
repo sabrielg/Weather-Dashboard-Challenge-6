@@ -2,25 +2,33 @@ var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city");
 var cityButtons = document.querySelector("#city-buttons");
 var mainDiv = document.querySelector("#main");
-var forecastDiv = document.querySelector("#forecastCard");
-var cityHistory = document.querySelector("#cityHistory");
-var cities; 
-
-
-// var NowMoment = moment().format();
+var forecastDiv = document.querySelector("#forecast");
 
 var formSubmitHandler = function (event) {
-  event.preventDefault();
-  console.log(event);
-  var city = cityInputEl.value.trim();
-  console.log(city)
-  if (city) {
-      saveCities(city);
-    getCoordinates(city);
-    cityInputEl.value = "";
-  } else {
-    alert("Please enter a City");
-  }
+    target = $(event.target);
+    targetId = target.attr("id");
+
+    if (targetId === "citySearchList") {
+        var city = target.text();
+    } else if (targetId === "search-submit") {
+        var city = $("#citySearch").val();
+    };
+    if(city) {
+        getWeatherData(city);
+    } else {
+        alert("Please enter a city");
+    }
+    target.blur();
+//   event.preventDefault();
+//   console.log(event);
+//   var city = cityInputEl.value.trim();
+//   if (city) {
+//     getCoordinates(city);
+//     repoContainerEl.textContent = "";
+//     cityInputEl.value = "";
+//   } else {
+//     alert("Please enter a City");
+//   }
 };
 
 var getCoordinates = function (locationName) {
@@ -31,6 +39,7 @@ fetch(apiGoogleUrl)
         response.json().then(function(data) {
             console.log(data);
             var h2 = document.createElement("h2");
+            // var locationName = userInput.value;
             h2.innerText = locationName;
             mainDiv.appendChild(h2)
             weatherData(data.city.coord.lat, data.city.coord.lon);
@@ -44,43 +53,8 @@ fetch(apiGoogleUrl)
     alert("unable to connect to google geolocation");
 });
 }
-function getWeather(event) {
-    mainDiv.innerHTML = ""
-    forecastDiv.innerHTML = ""
-    console.log(event.target.innerText)
-    getCoordinates(event.target.innerText);
-}
 
-loadRecentSearch();
-
-
-function loadRecentSearch() {
-    var recentSearch = JSON.parse(localStorage.getItem("cities"));
-    if (recentSearch) {
-        cities = recentSearch;
-        for (let i = 0; i < cities.length; i++) {
-            var button = document.createElement("button");
-            // button.classList.add("")
-            button.innerText = cities[i]
-            button.value = cities[i]
-            button.addEventListener("click", getWeather)
-            cityHistory.appendChild(button)
-            
-        }
-    } else {
-        cities = [];
-    }
-};
-
-function saveCities(city) {
-    // localStorage.setItem("cities", city);
-    cities.push(city);
-    localStorage.setItem("cities", JSON.stringify(cities));
-}
-
-
-
-// getCoordinates(city);
+getCoordinates(locationName);
 
 
 var weatherData = function (lat, long) {
@@ -89,28 +63,25 @@ var weatherData = function (lat, long) {
     if(response.ok) {
         response.json().then(function(data) {
             console.log(data);
-            var counter = 0
+
             // add in date and icons depending on the weather
             for (let i = 0; i < 5; i++) {
                 var p = document.createElement("p");
                 var temp = data.daily[i].temp.day
                 p.innerText = Math.floor((temp - 273.15)*1.8 + 32) + "°F"
                 forecastDiv.appendChild(p);
-
-                var p2 = document.createElement("p");
-                p2.innerText = moment().add(counter, "days")
-                forecastDiv.appendChild(p2);
-
-                var p3 = document.createElement("p");
+            }
+            for (let i = 0; i < 5; i++) {
+                var p = document.createElement("p");
                 var wind = data.daily[i].wind_speed
-                p3.innerText = wind + "MPH"
-                forecastDiv.appendChild(p3);
-
-                var p4 = document.createElement("p");
+                p.innerText = wind + "MPH"
+                forecastDiv.appendChild(p);
+            }
+            for (let i = 0; i < 5; i++) {
+                var p = document.createElement("p");
                 var humidity = data.daily[i].humidity
-                p4.innerText = humidity + "%"
-                forecastDiv.appendChild(p4);
-                counter ++
+                p.innerText = humidity + "%"
+                forecastDiv.appendChild(p);
             }
             
             return data;

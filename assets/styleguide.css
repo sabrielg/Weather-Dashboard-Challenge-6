@@ -1,4 +1,14 @@
 .btn {
-    background-color: rgb(113, 194, 197);
+    background-color: #34a0a4;
     color: white;
+}
+
+.forecast {
+    float: right;
+}
+
+.hero {
+    background-image: linear-gradient(to right, #D9ED92, #184E77);
+    color: white;
+    justify-content: center;
 }
