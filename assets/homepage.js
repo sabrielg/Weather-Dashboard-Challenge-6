@@ -24,8 +24,8 @@ var formSubmitHandler = function (event) {
 };
 
 var getCoordinates = function (locationName) {
-var apiGoogleUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +locationName+"&appid=d59404695f0b8f8b3fe98cdfa252ddd5"
-fetch(apiGoogleUrl)
+var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +locationName+"&appid=d59404695f0b8f8b3fe98cdfa252ddd5"
+fetch(apiUrl)
 .then(function(response) {
     if(response.ok) {
         response.json().then(function(data) {
@@ -90,26 +90,33 @@ var weatherData = function (lat, long) {
         response.json().then(function(data) {
             console.log(data);
             var counter = 0
-            // add in date and icons depending on the weather
+            // icons depending on the weather
+            // for loop for 0 which = current day
             for (let i = 0; i < 5; i++) {
                 var p = document.createElement("p");
+                var div = document.createElement("div")
                 var temp = data.daily[i].temp.day
                 p.innerText = Math.floor((temp - 273.15)*1.8 + 32) + "°F"
-                forecastDiv.appendChild(p);
+                // forecastDiv.appendChild(p)
+                div.setAttribute("class", "col-3");
 
                 var p2 = document.createElement("p");
-                p2.innerText = moment().add(counter, "days")
-                forecastDiv.appendChild(p2);
+                p2.innerText = moment().add(counter, "days").format("ddd MMM D YYYY")
+                // forecastDiv.appendChild(p2);
+                // p2.setAttribute("class", "col-3");
 
                 var p3 = document.createElement("p");
                 var wind = data.daily[i].wind_speed
                 p3.innerText = wind + "MPH"
-                forecastDiv.appendChild(p3);
+                // forecastDiv.appendChild(p3);
+
 
                 var p4 = document.createElement("p");
                 var humidity = data.daily[i].humidity
                 p4.innerText = humidity + "%"
-                forecastDiv.appendChild(p4);
+                // forecastDiv.appendChild(p4);
+                div.append(p,p2,p3,p4)
+                forecastDiv.append(div);
                 counter ++
             }
             

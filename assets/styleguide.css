@@ -7,6 +7,12 @@
     float: right;
 }
 
+#forecastCard {
+    float: right;
+    flex-direction: row;
+    display: flex;
+}
+
 .hero {
     background-image: linear-gradient(to right, #D9ED92, #184E77);
     color: white;
