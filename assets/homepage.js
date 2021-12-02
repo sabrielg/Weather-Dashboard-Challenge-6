@@ -4,6 +4,7 @@ var cityButtons = document.querySelector("#city-buttons");
 var mainDiv = document.querySelector("#main");
 var forecastDiv = document.querySelector("#forecastCard");
 var cityHistory = document.querySelector("#cityHistory");
+var currentDayDiv = document.querySelector("#currentDay");
 var cities; 
 
 
@@ -82,7 +83,7 @@ function saveCities(city) {
 
 // getCoordinates(city);
 
-
+// Current Weather Function
 var weatherData = function (lat, long) {
   var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+"&lon="+long+"&cnt=5&appid=d59404695f0b8f8b3fe98cdfa252ddd5";
   fetch(apiUrl).then(function(response) {
@@ -90,32 +91,38 @@ var weatherData = function (lat, long) {
         response.json().then(function(data) {
             console.log(data);
             var counter = 0
-            // icons depending on the weather
+
+            var currentDay = document.createElement("p");
+            var div = document.createElement("div");
+            var currentTemp = data.current.temp
+            currentDay.innerText = "Temp" + temp + " °F"
+            // currentTemp.textContent = data.current.temp
+            div.append(currentDay)
+            currentDayDiv.append(div);
+            // // icons depending on the weather
             // for loop for 0 which = current day
+
+            // For loop for 5 day forecast
             for (let i = 0; i < 5; i++) {
-                var p = document.createElement("p");
+
+                var p1 = document.createElement("p");
                 var div = document.createElement("div")
                 var temp = data.daily[i].temp.day
-                p.innerText = Math.floor((temp - 273.15)*1.8 + 32) + "°F"
-                // forecastDiv.appendChild(p)
+                p1.innerText = Math.floor((temp - 273.15)*1.8 + 32) + " °F"
                 div.setAttribute("class", "col-3");
 
                 var p2 = document.createElement("p");
                 p2.innerText = moment().add(counter, "days").format("ddd MMM D YYYY")
-                // forecastDiv.appendChild(p2);
-                // p2.setAttribute("class", "col-3");
 
                 var p3 = document.createElement("p");
                 var wind = data.daily[i].wind_speed
-                p3.innerText = wind + "MPH"
-                // forecastDiv.appendChild(p3);
+                p3.innerText = "Wind Speed " + wind + " MPH"
 
 
                 var p4 = document.createElement("p");
                 var humidity = data.daily[i].humidity
-                p4.innerText = humidity + "%"
-                // forecastDiv.appendChild(p4);
-                div.append(p,p2,p3,p4)
+                p4.innerText = "Humidity " + humidity + "%"
+                div.append(p1,p2,p3,p4)
                 forecastDiv.append(div);
                 counter ++
             }

@@ -32,8 +32,8 @@ var formSubmitHandler = function (event) {
 };
 
 var getCoordinates = function (locationName) {
-var apiGoogleUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +locationName+"&appid=d59404695f0b8f8b3fe98cdfa252ddd5"
-fetch(apiGoogleUrl)
+var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +locationName+"&appid=d59404695f0b8f8b3fe98cdfa252ddd5"
+fetch(apiUrl)
 .then(function(response) {
     if(response.ok) {
         response.json().then(function(data) {
