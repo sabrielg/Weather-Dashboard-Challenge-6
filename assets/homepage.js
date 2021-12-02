@@ -100,10 +100,11 @@ var weatherData = function (lat, long) {
             // currentTemp.innerText = Math.floor((temp - 273.15)*1.8 + 32)
             var currentHumidity = data.current.humidity
             var currentWindSpeed = data.current.wind_speed
-            currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + "Temp " + currentTemp + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
+            // currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + "Temp " + currentTemp + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
             currentDayDiv.innerHTML = "";
             currentDayDiv.appendChild(currentDay);
             mainDiv.appendChild(currentDayDiv);
+            currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
             // // icons depending on the weather
 
 
