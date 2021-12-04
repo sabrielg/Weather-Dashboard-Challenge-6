@@ -13,8 +13,13 @@
     display: flex;
 }
 
+.none {
+    display: none;
+}
+
 .hero {
     background-image: linear-gradient(to right, #D9ED92, #184E77);
     color: white;
     justify-content: center;
 }
+

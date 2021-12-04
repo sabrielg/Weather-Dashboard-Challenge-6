@@ -17,6 +17,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
   console.log(event);
   var city = cityInputEl.value.trim();
+  forecastDiv.innerHTML = ""
   console.log(city)
   if (city) {
       saveCities(city);
@@ -106,7 +107,6 @@ var weatherData = function (lat, long) {
             mainDiv.appendChild(currentDayDiv);
             currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
             // // icons depending on the weather
-
 
             // For loop for 5 day forecast
             for (let i = 0; i < 5; i++) {
