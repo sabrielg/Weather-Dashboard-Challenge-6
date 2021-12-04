@@ -78,14 +78,12 @@ function loadRecentSearch() {
 };
 
 function saveCities(city) {
-    // localStorage.setItem("cities", city);
+    localStorage.setItem("cities", city);
     cities.push(city);
     localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 
-
-// getCoordinates(city);
 
 // Current Weather Function
 var weatherData = function (lat, long) {
@@ -98,39 +96,39 @@ var weatherData = function (lat, long) {
 
             var currentDay = document.createElement("p");
             var currentTemp = data.current.temp
-            // currentTemp.innerText = Math.floor((temp - 273.15)*1.8 + 32)
             var currentHumidity = data.current.humidity
             var currentWindSpeed = data.current.wind_speed
-            // currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + "Temp " + currentTemp + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
             currentDayDiv.innerHTML = "";
             currentDayDiv.appendChild(currentDay);
             mainDiv.appendChild(currentDayDiv);
-            currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + "Humidity " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
+            currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + "Humidity: " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
             // // icons depending on the weather
 
             // For loop for 5 day forecast
-            for (let i = 0; i < 5; i++) {
+            for (let i = 1; i < 6; i++) {
 
-                var p2 = document.createElement("p");
-                p2.innerText = moment().add(counter, "days").format("ddd MMM D YYYY")
+                var date = document.createElement("p");
+                date.innerText = moment().add(i, "days").format("ddd MMM D YYYY")
 
-                var p1 = document.createElement("p");
+                var Icon = document.createElement("img");
+                Icon.src = `http://openweathermap.org/img/wn/10d@2x.png`;
+
+                var tempCard = document.createElement("p");
                 var div = document.createElement("div")
                 var temp = data.daily[i].temp.day
-                p1.innerText = Math.floor((temp - 273.15)*1.8 + 32) + " °F"
+                tempCard.innerText = "Temp: " + Math.floor((temp - 273.15)*1.8 + 32) + " °F"
                 div.setAttribute("class", "col-3");
 
-                var p3 = document.createElement("p");
+                var windSpeed = document.createElement("p");
                 var wind = data.daily[i].wind_speed
-                p3.innerText = "Wind Speed " + wind + " MPH"
+                windSpeed.innerText = "Wind Speed: " + wind + " MPH"
 
 
-                var p4 = document.createElement("p");
+                var HumidCard = document.createElement("p");
                 var humidity = data.daily[i].humidity
-                p4.innerText = "Humidity " + humidity + "%"
-                div.append(p2,p1,p3,p4)
+                HumidCard.innerText = "Humidity: " + humidity + "%"
+                div.append(date,Icon,tempCard,windSpeed,HumidCard)
                 forecastDiv.append(div);
-                counter ++
             }
             
             return data;
