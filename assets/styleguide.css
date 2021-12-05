@@ -57,3 +57,11 @@ color: white;
     float: left;
     width: 75%;
 }
+
+.day-buttons {
+    border-radius: 5px;
+    background-color: #34a0a4;
+    color: white;
+    border: none;
+    margin-top: 5px;
+}

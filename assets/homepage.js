@@ -65,6 +65,7 @@ function loadRecentSearch() {
         cities = recentSearch;
         for (let i = 0; i < cities.length; i++) {
             var button = document.createElement("button");
+            button.setAttribute("class", "day-buttons")
             // button.classList.add("")
             button.innerText = cities[i]
             button.value = cities[i]
@@ -97,15 +98,26 @@ var weatherData = function (lat, long) {
             var counter = 0
 
             var currentDay = document.createElement("p");
-            // var currentIcon = document.createElement("img");
-            // currentIcon.src = `http://openweathermap.org/img/wn/10d@2x.png`;
+            var currentIcon = document.createElement("img");
+            console.log(currentIcon)
+            console.log(data.current.weather[0].icon)
+            var iconTwo = data.current.weather[0].icon
+            currentIcon.src = `http://openweathermap.org/img/wn/${iconTwo}@2x.png`;
             var currentTemp = data.current.temp
             var currentHumidity = data.current.humidity
             var currentWindSpeed = data.current.wind_speed
+            var currentUvIndex = data.current.uvi
             currentDayDiv.innerHTML = "";
             currentDayDiv.appendChild(currentDay);
             mainDiv.appendChild(currentDayDiv);
-            currentDay.innerText = moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + "Humidity: " + currentHumidity + "%" + "\n" + currentWindSpeed + " MPH"   
+            currentDay.innerText = 
+            moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" 
+            + currentIcon + "\n" + 
+            "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
+            "Humidity: " + currentHumidity + "%" + "\n" + 
+            currentWindSpeed + " MPH" + "\n"
+            "Current UV index" + currentUvIndex
+            console.log(data.current.uvi)
             // // icons depending on the weather
 
             // For loop for 5 day forecast
