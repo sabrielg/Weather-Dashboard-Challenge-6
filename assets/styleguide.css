@@ -5,6 +5,7 @@
 
 .forecast {
     float: right;
+    align-items: center;
 }
 
 #forecastCard {
@@ -20,6 +21,39 @@
 .hero {
     background-image: linear-gradient(to right, #D9ED92, #184E77);
     color: white;
-    justify-content: center;
+    align-items: center;
+
 }
 
+#main {
+background-color: #34a0a4;
+max-width: 100%;
+/* width: 75%; */
+padding: 20px;
+margin-left: 20px;
+color: white;
+}
+
+#days {
+    /* background-color: blue; */
+    max-width: 100%;
+}
+
+.individual-days {
+    border-color:#34a0a4;
+    border-style: solid;
+    border-width: 5px;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+#current {
+    /* background-color: crimson; */
+    width: 25%;
+    float: left;
+}
+
+#second-main {
+    float: left;
+    width: 75%;
+}

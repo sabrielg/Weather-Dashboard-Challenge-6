@@ -69,7 +69,9 @@ function loadRecentSearch() {
             button.innerText = cities[i]
             button.value = cities[i]
             button.addEventListener("click", getWeather)
+            var br = document.createElement("br");
             cityHistory.appendChild(button)
+            cityHistory.appendChild(br)
             
         }
     } else {
@@ -95,6 +97,8 @@ var weatherData = function (lat, long) {
             var counter = 0
 
             var currentDay = document.createElement("p");
+            // var currentIcon = document.createElement("img");
+            // currentIcon.src = `http://openweathermap.org/img/wn/10d@2x.png`;
             var currentTemp = data.current.temp
             var currentHumidity = data.current.humidity
             var currentWindSpeed = data.current.wind_speed
@@ -111,13 +115,13 @@ var weatherData = function (lat, long) {
                 date.innerText = moment().add(i, "days").format("ddd MMM D YYYY")
 
                 var Icon = document.createElement("img");
-                Icon.src = `http://openweathermap.org/img/wn/10d@2x.png`;
+                Icon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`;
 
                 var tempCard = document.createElement("p");
                 var div = document.createElement("div")
                 var temp = data.daily[i].temp.day
                 tempCard.innerText = "Temp: " + Math.floor((temp - 273.15)*1.8 + 32) + " °F"
-                div.setAttribute("class", "col-3");
+                div.setAttribute("class", "individual-days");
 
                 var windSpeed = document.createElement("p");
                 var wind = data.daily[i].wind_speed
