@@ -109,13 +109,13 @@ var weatherData = function (lat, long) {
             var currentUvIndex = data.current.uvi
             currentDayDiv.innerHTML = "";
             currentDayDiv.appendChild(currentDay);
+            currentDayDiv.appendChild(currentIcon)
             mainDiv.appendChild(currentDayDiv);
             currentDay.innerText = 
             moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" 
-            + currentIcon + "\n" + 
-            "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
+            + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
             "Humidity: " + currentHumidity + "%" + "\n" + 
-            currentWindSpeed + " MPH" + "\n"
+            "Wind: " + currentWindSpeed + " MPH" + "\n"
             "Current UV index" + currentUvIndex
             console.log(data.current.uvi)
             // // icons depending on the weather
@@ -137,7 +137,7 @@ var weatherData = function (lat, long) {
 
                 var windSpeed = document.createElement("p");
                 var wind = data.daily[i].wind_speed
-                windSpeed.innerText = "Wind Speed: " + wind + " MPH"
+                windSpeed.innerText = "Wind: " + wind + " MPH"
 
 
                 var HumidCard = document.createElement("p");

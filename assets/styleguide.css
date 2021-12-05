@@ -1,11 +1,24 @@
 .btn {
+    margin: 10px;
+    background-color: #34a0a4;
+    color: white;
+    width: 50%;
+}
+.form-input {
+    margin: 10px;
+}
+
+.card-header {
+    margin: 10px;
+    font-size: 25px;
     background-color: #34a0a4;
     color: white;
 }
 
 .forecast {
-    float: right;
-    align-items: center;
+    float: left;
+    padding: 10px;
+    margin: 10px;
 }
 
 #forecastCard {
@@ -22,6 +35,7 @@
     background-image: linear-gradient(to right, #D9ED92, #184E77);
     color: white;
     align-items: center;
+    padding: 50px;
 
 }
 
@@ -43,19 +57,22 @@ color: white;
     border-color:#34a0a4;
     border-style: solid;
     border-width: 5px;
-    margin-left: 20px;
+    margin-left: 30px;
     padding: 5px;
+    flex-wrap: wrap;
 }
 
 #current {
     /* background-color: crimson; */
-    width: 25%;
+    margin-top: 10px;
+    width: 30%;
     float: left;
 }
 
 #second-main {
+    margin-top: 10px;
     float: left;
-    width: 75%;
+    width: 70%;
 }
 
 .day-buttons {
@@ -64,4 +81,5 @@ color: white;
     color: white;
     border: none;
     margin-top: 5px;
+    margin-left: 10px;
 }
