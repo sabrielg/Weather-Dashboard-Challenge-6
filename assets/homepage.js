@@ -116,9 +116,10 @@ var weatherData = function (lat, long) {
             moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" 
             + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
             "Humidity: " + currentHumidity + "%" + "\n" + 
-            "Wind: " + currentWindSpeed + " MPH" + "\n"
-            "Current UV index" + currentUvIndex
+            "Wind: " + currentWindSpeed + " MPH" + "\n" +
+            "Current UV index " + currentUvIndex
             console.log(data.current.uvi)
+
             // // icons depending on the weather
 
             // For loop for 5 day forecast
