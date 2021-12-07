@@ -117,7 +117,7 @@ var weatherData = function (lat, long) {
             + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
             "Humidity: " + currentHumidity + "%" + "\n" + 
             "Wind: " + currentWindSpeed + " MPH" + "\n"
-            // "Current UV index" + currentUvIndex
+            "Current UV index" + currentUvIndex
             console.log(data.current.uvi)
             // // icons depending on the weather
 
