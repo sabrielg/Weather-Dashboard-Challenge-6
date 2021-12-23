@@ -106,13 +106,13 @@ var weatherData = function (lat, long) {
             var currentTemp = data.current.temp
             var currentHumidity = data.current.humidity
             var currentWindSpeed = data.current.wind_speed
-            var currentUvIndex = data.current.uvi
-            if (currentUvIndex < 3) {
-                currentUvIndex.classList.add("bg-success")
-            }
-            if (currentUvIndex > 3) {
-                currentUvIndex.classList.add("bg-warning");
-            }
+            // var currentUvIndex = data.current.uvi
+            // if (currentUvIndex < 3) {
+            //     currentUvIndex.classList.add("bg-success")
+            // }
+            // if (currentUvIndex > 3) {
+            //     currentUvIndex.classList.add("bg-warning");
+            // }
             currentDayDiv.innerHTML = "";
             currentDayDiv.appendChild(currentDay);
             currentDayDiv.appendChild(currentIcon);
@@ -121,9 +121,9 @@ var weatherData = function (lat, long) {
             moment().add(counter, "days").format("ddd MMM D YYYY") + "\n" 
             + "Temperature: " + Math.floor((currentTemp - 273.15)*1.8 + 32) + " °F" + "\n" + 
             "Humidity: " + currentHumidity + "%" + "\n" + 
-            "Wind: " + currentWindSpeed + " MPH" + "\n" +
-            "Current UV index: " + currentUvIndex
-            console.log(data.current.uvi)
+            "Wind: " + currentWindSpeed + " MPH" 
+            // "Current UV index: " + currentUvIndex
+            // console.log(data.current.uvi)
 
             // // icons depending on the weather
 
